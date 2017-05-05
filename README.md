@@ -19,8 +19,17 @@
 - Make sure to have redis-server installed. Run redis-server
 - Run "celery -A amnesia worker -l info" to boot workers.
 - Run "celery -A amnesia beat -l info -S django" to start scheduling using celery beat.
+	- "-S" is used to specify the scheduler
+	- which in this case is django
 - Visit localhost
 - Signup + Login
+	- If working with existing db:
+		- User:
+			- username: john
+			- password: socialcops
+		- Superuser:
+			- username: pratulya
+			- password: socialcops
 - Create Task
 
 ## 5) Django Things:
@@ -39,6 +48,7 @@
 - Leaving it because otherwise the solution ceases to be basic.
 
 ## 7) Disclaimer:
+- SQLite3 db is used for portability and easy demonstration purposes.
 - The UI is shabby. The internship demands backend SE.
 - "Logs" has been merged shamelessly within the user model for simplicity purposes.
 - Not much user authentication is applied because a basic application is required.

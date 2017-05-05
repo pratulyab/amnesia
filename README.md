@@ -12,6 +12,8 @@
 	- TWILIO_ACCOUNT_SID
 	- TWILIO_AUTH_TOKEN
 	- MY_TWILIO_NUMBER
+- Utils in sms.py
+- SMS task => task/tasks.py
 
 ## 4) How To Run:
 - Make sure to have redis-server installed. Run redis-server
@@ -25,15 +27,16 @@
 - Inorder to create superuser, use django shell. Each user has a OneToOne mapping to a PhoneNumber.
 - FIXTURES: number/fixtures/countries.json =>
 	- Country name
-	- Alpha-2 Code
+	- Alpha-2 Codes
+	- Calling Codes
 - countries.py scrapes wikipedia pages for above data.
 
 ## 6) Point of Failure:
-- Server stores works with Asia/Kolkata as TIMEZONE
-- If user of different TZ schedules a task, the schedule would work according to the server's TIMEZONE.
-- Currently, django_celery_beat doesn't seem to support 'nowfun' argument for crontab scheduling. 
-- Also, leaving it because otherwise the solution ceases to be basic.
+- Server works with Asia/Kolkata as TIMEZONE. So, if user of different TZ schedules a task, the schedule would work according to the server's TIMEZONE.
+- (Working with UTC would also have same implications)
+- Currently, django_celery_beat doesn't seem to support 'nowfun' argument for crontab scheduling which helps in making tasks aware of TZ.
 - However, to check for the TIMEZONE offset, a hidden input is received when "Create Task Form" is submitted. (name="timezone_offset")
+- Leaving it because otherwise the solution ceases to be basic.
 
 ## 7) Disclaimer:
 - The UI is shabby. The internship demands backend SE.

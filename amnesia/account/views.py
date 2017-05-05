@@ -54,7 +54,7 @@ def signup(request):
 def home(request):
 	user = request.user
 	tasks = []
-	logs = user.logs.split('\\n')
+	logs = user.logs.split('\n')
 	logs = [log for log in logs if log]
 	for i,task in enumerate(user.tasks.all()):
 		tasks.append({

@@ -21,9 +21,9 @@
 - Run "celery -A amnesia beat -l info -S django" to start scheduling using celery beat.
 	- "-S" is used to specify the scheduler
 	- which in this case is django
-- Visit localhost
+- Run django's local server and visit localhost
 - Signup + Login
-	- If working with existing db:
+	- If working with existing database:
 		- User:
 			- username: john
 			- password: socialcops
@@ -31,6 +31,21 @@
 			- username: pratulya
 			- password: socialcops
 - Create Task
+	- "Message" Field
+		- What message should be sent
+	- "Repeat Every" Field
+		- Choose from:
+			- every minute
+			- 15 minutes
+			- 30 minutes
+			- 60 minutes (hour) (the original requirement)
+	- "Sleep Cycle" Field
+		- As the problem states, the message should not be sent when the user is asleep. Assuming sleep cycle of 8 hours, choose from:
+			- None (No night hours restriction)
+			- 8pm - 4am
+			- ...
+		- Complementary hours are used for crontab
+	- Wait to be notified on your registered and Twilio verified number.
 
 ## 5) Django Things:
 - Inorder to create superuser, use django shell. Each user has a OneToOne mapping to a PhoneNumber.

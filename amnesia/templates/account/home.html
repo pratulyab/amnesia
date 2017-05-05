@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load material_form %}
+
+{% block title %} Amnesia | Home {% endblock %}
+
+{% block header %}
+	<div class="row">
+		<h4 class="col s3"> Hi {{user.username}} </h4>
+		<div class="col s2 offset-s7"><a href="{% url 'logout' %}"><h4>Logout</h4></a></div>
+	</div>
+{% endblock %}
+{% block content %}
+	<div class="row">
+		<div id="tasks" class="col s6">
+			<h2 class="teal-text center-align">Your Tasks</h2>
+			<ul class="collapsible" data-collapsible="accordion">
+				{% for task in tasks %}
+					<li>
+						<div class="collapsible-header center-align {% if task.number == 1 %}active{% endif %}"><b>Task {{ task.number }}</b></div>
+						<div class="collapsible-body">
+							<ul>
+								<li><b>Runtime:</b> {{ task.created_on|timesince }}</li>
+								<li><b>Message:</b> {{ task.message }}</li>
+								<li><b>Crontab:</b> {{ task.crontab }}</li>
+								<li><b>Repeat:</b> {% if "every" not in task.repeat %}every {% endif %}{{ task.repeat }}</li>
+								<li><b>Sleep Cycle:</b> {{ task.sleep_cycle }}</li>
+							</ul>
+						</div>
+					</li>
+				{% empty %}
+					<h5 class="orange-text text-accent-2 center-align"> You haven't created any tasks yet. </h5>
+				{% endfor %}
+			</ul>
+		</div>
+		<div id="create-task-div" class="col s6">
+			<h2 class="blue-text text-accent-4 center-align"> Create New Task </h2>
+			<form id="create-task-form" method="post" action="{% url 'create_task' %}">
+				{% csrf_token %}
+				{% form form=create_task_form %}{% endform %}
+				<div class="row"><button type="submit" class="col s8 offset-s2 btn btn-large blue">Create New Task</button></div>
+			</form>
+		</div>
+		<div id="logs col s8 offset-s2">
+			<h2 class="pink-text center-align">Logs</h2>
+			<ul>
+				{% for log in logs %}
+					<li class="{% if "SUCCESS" in log %}green-text{% else %}red-text{% endif %}">{{ log }}</li>
+				{% empty %}
+					<h5 class="orange-text text-accent-2 center-align">No logs to show.</h5>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script>
+		var $form = $('#create-task-form');
+		$input = $('<input type="hidden" name="timezone_offset">');
+		var tz_offset = (new Date()).getTimezoneOffset() / 60;
+		$input.attr('value', tz_offset);
+		$form.append($input);
+	</script>
+{% endblock %}

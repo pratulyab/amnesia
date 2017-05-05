@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+
+dump.rdb
+
+celerybeat.pid
+django.db
+celerybeat-schedule.db
+
+.DS_Store

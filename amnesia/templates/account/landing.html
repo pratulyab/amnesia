@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load material_form %}
+{% load staticfiles %}
+
+{% block title %}Amnesia | Landing{% endblock %}
+
+{% block content %}
+	<div class="row">
+		<div id="login-form-div" class="col s6 offset-s3">
+			<h3 class="purple-text text-accent-4 center-align">Login</h3>
+			<form id="login-form" method="post" action="{% url 'login' %}">
+				{% csrf_token %}
+				{% form form=login_form %}{% endform %}
+				<div class="row">
+					<button type="submit" class="col s8 offset-s2 btn btn-large blue">Login</button>
+				</div>
+			</form>
+		</div>
+		<div id="signup-form-div" class="col s8 offset-s2">
+			<h3 class="teal-text center-align">Signup</h3>
+			<form id="signup-form" method="post" action="{% url 'signup' %}">
+				{% csrf_token %}
+				<div class="col s6">
+					{% form form=signup_form %}{% endform %}
+				</div>
+				<div class="col s6" id="number-form">
+					{% form form=number_form %}{% endform %}
+				</div>
+				<small class="purple-text"><b>Note:</b> Signup might take some time as a request to Twilio is made to check the number's authenticity</small>
+				<div class="row"><button type="submit" class="col s8 offset-s2 btn btn-large blue">Signup</button></div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+	<script src="{% static 'landing.js' %}"></script>
+	<script>
+		$(document).ready(function() {
+			Landing.init();
+		});
+	</script>
+{% endblock %}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+	{% load staticfiles %}
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		{% include 'material/includes/material_css.html' %}
+		{% block head %}{% endblock head %}
+	</head>
+	<body>
+		<header>
+			{% block header %}{% endblock header %}
+		</header>
+		<main>
+			{% block content %}{% endblock content %}
+		</main>
+		<footer>
+			{% block footer %}{% endblock footer %}
+		</footer>
+		<script src="{% static 'material/js/jquery-2.2.0.js' %}"></script>
+		{% include 'material/includes/material_js.html' %}
+		{% block scripts %}{% endblock scripts %}
+	</body>
+</html>

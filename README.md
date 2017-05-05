@@ -45,7 +45,8 @@
 			- 8pm - 4am
 			- ...
 		- Complementary hours are used for crontab
-	- Wait to be notified on your registered and Twilio verified number.
+- Wait to be notified on your registered and Twilio verified number.
+- Both SUCCESS and FAILURE logs will be outputted to user's homepage.
 
 ## 5) Django Things:
 - Inorder to create superuser, use django shell. Each user has a OneToOne mapping to a PhoneNumber.

@@ -26,10 +26,10 @@
 	- If working with existing database:
 		- User:
 			- username: john
-			- password: socialcops
+			- password: john
 		- Superuser:
-			- username: pratulya
-			- password: socialcops
+			- username: admin
+			- password: admin
 - Create Task
 	- "Message" Field
 		- What message should be sent

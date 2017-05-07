@@ -17,8 +17,6 @@
 
 ## 4) How To Run:
 - Make sure to have redis-server installed. Run redis-server
-- Run "celery -A amnesia worker -l info" to boot workers.
-- Run "celery -A amnesia beat -l info -S django" to start scheduling using celery beat.
 	- "-S" is used to specify the scheduler
 	- which in this case is django
 - Run django's local server and visit localhost
@@ -45,6 +43,9 @@
 			- 8pm - 4am
 			- ...
 		- Complementary hours are used for crontab
+
+- Run "celery -A amnesia worker -l info" to boot workers.
+- Run "celery -A amnesia beat -l info -S django" to start scheduling using celery beat.
 - Wait to be notified on your registered and Twilio verified number.
 - Both SUCCESS and FAILURE logs will be outputted to user's homepage.
 
@@ -64,6 +65,7 @@
 - Leaving it because otherwise the solution ceases to be basic.
 
 ## 7) Disclaimer:
+- Celery Beat process needs to be restarted for new task.
 - SQLite3 db is used for portability and easy demonstration purposes.
 - The UI is shabby. The internship demands backend SE.
 - "Logs" has been merged shamelessly within the user model for simplicity purposes.

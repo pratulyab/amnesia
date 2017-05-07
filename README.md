@@ -65,7 +65,8 @@
 - Leaving it because otherwise the solution ceases to be basic.
 
 ## 7) Disclaimer:
-- Celery Beat process needs to be restarted for new task.
+- Celery Beat process needs to be restarted for new task. (django-celery-beat's limitation)
+	- Can implement a work around, but then the application would cease to be basic.
 - SQLite3 db is used for portability and easy demonstration purposes.
 - The UI is shabby. The internship demands backend SE.
 - "Logs" has been merged shamelessly within the user model for simplicity purposes.

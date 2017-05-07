@@ -17,8 +17,6 @@
 
 ## 4) How To Run:
 - Make sure to have redis-server installed. Run redis-server
-	- "-S" is used to specify the scheduler
-	- which in this case is django
 - Run django's local server and visit localhost
 - Signup + Login
 	- If working with existing database:
@@ -46,6 +44,8 @@
 
 - Run "celery -A amnesia worker -l info" to boot workers.
 - Run "celery -A amnesia beat -l info -S django" to start scheduling using celery beat.
+	- "-S" is used to specify the scheduler
+	- which in this case is django
 - Wait to be notified on your registered and Twilio verified number.
 - Both SUCCESS and FAILURE logs will be outputted to user's homepage.
 
